@@ -3,6 +3,7 @@ package com.example.springapp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,6 +14,7 @@ import com.example.springapp.service.TodoListService;
 public class TodoListController {
     @Autowired
     TodoListService todoSer;
+    @PostMapping("/create")
     public ResponseEntity<TodoList> createtodoList(@RequestBody TodoList todo) {
         try {
            TodoList todolist = todoSer.createTodoList(todo);
