@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -28,6 +29,21 @@ public class TodoList {
     )
     
     private OffsetDateTime createdAt;
+    
+    @UpdateTimestamp
+    @JsonFormat(
+        pattern = "yyyy-MM-dd'T'HH:mm:ss"
+    )
+    
+    private OffsetDateTime updatedAt;
+    
+    public OffsetDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(OffsetDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 
     public TodoList() {
     }
@@ -77,7 +93,5 @@ public class TodoList {
     public void setCreatedAt(OffsetDateTime createdAt) {
         this.createdAt = createdAt;
     }
-
-
 
 }

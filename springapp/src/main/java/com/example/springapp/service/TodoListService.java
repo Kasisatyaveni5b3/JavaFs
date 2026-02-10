@@ -22,9 +22,14 @@ public class TodoListService {
     }
 
     public TodoList updateTodos(int id, TodoList todos) {
-        todo =todolistRepo.findById(id);
+        TodoList todo =todolistRepo.findById(id).orElseThrow();
         todo.setTaskName(todos.getTaskName());
         todo.setTaskDescription(todos.getTaskDescription());
         todo.setStatus(todos.getStatus());
+        return todolistRepo.save(todo);
+    }
+
+    public TodoList deleteTodo(int id) {
+        return todolistRepo.findById(id).de
     }
 }
