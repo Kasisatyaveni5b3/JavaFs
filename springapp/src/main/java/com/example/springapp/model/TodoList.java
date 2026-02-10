@@ -1,6 +1,8 @@
 package com.example.springapp.model;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.ZonedDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class TodoList {
@@ -19,7 +23,13 @@ public class TodoList {
     private String status;
 
     @CreationTimestamp
-    private LocalDateTime createdAt;
+    @JsonFormat(
+        shape = JsonFormat.Shape.STRING,
+        pattern = "yyyy-MM-dd'T'HH:mm:ss",
+        timezone = "Asia/Kolkata"
+    )
+    
+    private OffsetDateTime createdAt;
 
     public TodoList() {
     }

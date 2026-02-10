@@ -84,7 +84,7 @@ CREATE TABLE `todo_list` (
   `task_description` varchar(255) DEFAULT NULL,
   `task_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,6 +93,7 @@ CREATE TABLE `todo_list` (
 
 LOCK TABLES `todo_list` WRITE;
 /*!40000 ALTER TABLE `todo_list` DISABLE KEYS */;
+INSERT INTO `todo_list` VALUES (1,'2026-02-10 08:52:00.948639','pending','implementing todolist. now created post method','todolist'),(2,'2026-02-10 08:52:50.642069','pending','implementing todolist. now created post method','todolist'),(3,'2026-02-10 08:53:57.048699','pending','implementing todolist. now created post method','todolist');
 /*!40000 ALTER TABLE `todo_list` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -105,4 +106,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-02-10  7:17:11
+-- Dump completed on 2026-02-10  8:54:35
