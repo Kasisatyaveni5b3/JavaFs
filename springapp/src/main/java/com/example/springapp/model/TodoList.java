@@ -18,6 +18,9 @@ public class TodoList {
     private String taskDescription;
     private String status;
 
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+
     public TodoList() {
     }
 
@@ -67,7 +70,6 @@ public class TodoList {
         this.createdAt = createdAt;
     }
 
-    @CreationTimestamp
-    private LocalDateTime createdAt;
+
 
 }
