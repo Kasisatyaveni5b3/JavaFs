@@ -24,9 +24,7 @@ public class TodoList {
 
     @CreationTimestamp
     @JsonFormat(
-        shape = JsonFormat.Shape.STRING,
-        pattern = "yyyy-MM-dd'T'HH:mm:ss",
-        timezone = "Asia/Kolkata"
+        pattern = "yyyy-MM-dd'T'HH:mm:ss"
     )
     
     private OffsetDateTime createdAt;
@@ -72,11 +70,11 @@ public class TodoList {
         this.status = status;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public OffsetDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(OffsetDateTime createdAt) {
         this.createdAt = createdAt;
     }
 

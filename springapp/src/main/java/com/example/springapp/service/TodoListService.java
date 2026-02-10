@@ -1,5 +1,7 @@
 package com.example.springapp.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,5 +15,16 @@ public class TodoListService {
 
     public TodoList createTodoList(TodoList todo) {
         return todolistRepo.save(todo);
+    }
+
+    public List<TodoList> getToDos() {
+        return todolistRepo.findAll();
+    }
+
+    public TodoList updateTodos(int id, TodoList todos) {
+        todo =todolistRepo.findById(id);
+        todo.setTaskName(todos.getTaskName());
+        todo.setTaskDescription(todos.getTaskDescription());
+        todo.setStatus(todos.getStatus());
     }
 }
