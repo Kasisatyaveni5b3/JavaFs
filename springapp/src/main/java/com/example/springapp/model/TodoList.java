@@ -8,9 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.lang.NonNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -19,15 +21,18 @@ public class TodoList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @NotBlank(message = "Task name cannot be empty")
+    @Size(min=3,max=50)
     private String taskName;
+    @NotBlank(message = "Task description cannot be empty")
     private String taskDescription;
+    @NotBlank(message = "Task status cannot be empty")
     private String status;
 
     @CreationTimestamp
     @JsonFormat(
         pattern = "yyyy-MM-dd'T'HH:mm:ss"
     )
-    
     private OffsetDateTime createdAt;
     
     @UpdateTimestamp

@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.OffsetDateTime;
 import java.util.*;
 
+import javax.validation.Valid;
+
 import com.example.springapp.model.TodoList;
 import com.example.springapp.service.TodoListService;
 
@@ -24,7 +26,7 @@ public class TodoListController {
     @Autowired
     TodoListService todoSer;
     @PostMapping("/create")
-    public ResponseEntity<TodoList> createtodoList(@RequestBody TodoList todo) {
+    public ResponseEntity<TodoList> createtodoList(@Valid @RequestBody TodoList todo) {
         try {
            TodoList todolist = todoSer.createTodoList(todo);
            return ResponseEntity.status(HttpStatus.CREATED).body(todolist);
@@ -72,7 +74,7 @@ public class TodoListController {
     }
 
     @GetMapping("/todos")
-    public ResponseEntity<Page<TodoList>> sorttodoList(@RequestParam int pageNumber,@RequestParam int pageSize) {
+    public ResponseEntity<Page<TodoList>> sorttodoList(@Valid @RequestParam int pageNumber,@RequestParam int pageSize) {
         try {
            Page<TodoList> todolist = todoSer.pagination(pageNumber,pageSize);
            return ResponseEntity.ok(todolist);
