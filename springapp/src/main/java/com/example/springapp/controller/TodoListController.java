@@ -1,6 +1,7 @@
 package com.example.springapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -65,6 +66,16 @@ public class TodoListController {
         try {
            List<TodoList> todolist = todoSer.getToDos();
            return ResponseEntity.status(HttpStatus.CREATED).body(todolist);
+        } catch(Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping("/todos")
+    public ResponseEntity<Page<TodoList>> sorttodoList(@RequestParam int pageNumber,@RequestParam int pageSize) {
+        try {
+           Page<TodoList> todolist = todoSer.pagination(pageNumber,pageSize);
+           return ResponseEntity.ok(todolist);
         } catch(Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

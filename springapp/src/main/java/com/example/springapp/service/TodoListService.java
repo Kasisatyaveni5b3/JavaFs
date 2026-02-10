@@ -3,6 +3,9 @@ package com.example.springapp.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -39,4 +42,10 @@ public class TodoListService {
         return todolistRepo.findAll(Sort.by(sortBy));
 
     }
+
+    public Page<TodoList> pagination(int pageNumber, int pageSize) {
+        PageRequest pageable = PageRequest.of(pageNumber, pageSize);
+        return todolistRepo.findAll(pageable);
+    }
+    
 }
