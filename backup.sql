@@ -94,7 +94,7 @@ CREATE TABLE `todo_list` (
 
 LOCK TABLES `todo_list` WRITE;
 /*!40000 ALTER TABLE `todo_list` DISABLE KEYS */;
-INSERT INTO `todo_list` VALUES (1,'2026-02-10 08:52:00.948639','completed','implementing todolist. now created post method','todolist','2026-02-10 09:30:42.102053'),(2,'2026-02-10 08:52:50.642069','pending','implementing todolist. now created post method','todolist',NULL),(3,'2026-02-10 08:53:57.048699','pending','implementing todolist. now created post method','todolist',NULL),(4,'2026-02-10 09:09:26.195225','inpending','created todolist','todolist',NULL),(5,'2026-02-10 09:09:52.207560','inpending','created todolist','todolist',NULL),(6,'2026-02-10 09:11:33.069066','inpending','created todolist','todolist',NULL);
+INSERT INTO `todo_list` VALUES (1,'2026-02-10 08:52:00.948639','completed','implementing todolist. now created post method','todolist','2026-02-10 09:30:42.102053'),(3,'2026-02-10 08:53:57.048699','pending','implementing todolist. now created post method','todolist',NULL),(4,'2026-02-10 09:09:26.195225','inpending','created todolist','todolist',NULL),(5,'2026-02-10 09:09:52.207560','inpending','created todolist','todolist',NULL),(6,'2026-02-10 09:11:33.069066','inpending','created todolist','todolist',NULL);
 /*!40000 ALTER TABLE `todo_list` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -107,4 +107,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-02-10  9:33:41
+-- Dump completed on 2026-02-10  9:48:41
