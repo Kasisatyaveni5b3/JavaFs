@@ -16,6 +16,9 @@ import org.springframework.lang.NonNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import lombok.Data;
+
+@Data
 @Entity
 public class TodoList {
     @Id
@@ -38,64 +41,5 @@ public class TodoList {
     @JsonFormat(
         pattern = "yyyy-MM-dd'T'HH:mm:ss"
     )
-    
     private OffsetDateTime updatedAt;
-    
-    public OffsetDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(OffsetDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public TodoList() {
-    }
-
-    public TodoList(String taskName, String taskDescription, String status) {
-        this.taskName = taskName;
-        this.taskDescription = taskDescription;
-        this.status = status;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTaskName() {
-        return taskName;
-    }
-
-    public void setTaskName(String taskName) {
-        this.taskName = taskName;
-    }
-
-    public String getTaskDescription() {
-        return taskDescription;
-    }
-
-    public void setTaskDescription(String taskDescription) {
-        this.taskDescription = taskDescription;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public OffsetDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(OffsetDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
 }
