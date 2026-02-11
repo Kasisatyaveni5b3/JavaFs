@@ -1,5 +1,7 @@
 package com.example.springapp.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -25,14 +27,11 @@ import com.example.springapp.service.TodoListService;
 public class TodoListController {
     @Autowired
     TodoListService todoSer;
+    public static final Logger logger = LoggerFactory.getLogger(TodoListController.class);
     @PostMapping("/create")
     public ResponseEntity<TodoList> createtodoList(@Valid @RequestBody TodoList todo) {
-        try {
-           TodoList todolist = todoSer.createTodoList(todo);
-           return ResponseEntity.status(HttpStatus.CREATED).body(todolist);
-        } catch(Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+        TodoList todolist = todoSer.createTodoList(todo);
+        return ResponseEntity.status(HttpStatus.CREATED).body(todolist);
     }
 
     @GetMapping("/")
@@ -44,17 +43,14 @@ public class TodoListController {
     @GetMapping("/todos/{id}")
     public ResponseEntity<TodoList> getTodosList(@PathVariable int id) {
         TodoList todo=todoSer.getTodosById(id);
+        logger.(todo);
         return ResponseEntity.ok(todo);
     }
     
     @PutMapping("/update/{id}")
     public ResponseEntity<TodoList> updatetodoList(@PathVariable int id, @RequestBody TodoList todos) {
-        try {
-           TodoList todolist = todoSer.updateTodos(id,todos);
-           return ResponseEntity.status(HttpStatus.ACCEPTED).body(todolist);
-        } catch(Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+        TodoList todolist = todoSer.updateTodos(id,todos);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(todolist);
     }
 
     @DeleteMapping("/delete/{id}")
@@ -65,22 +61,14 @@ public class TodoListController {
 
     @GetMapping("/todos/createdAt")
     public ResponseEntity<List<TodoList>> sorttodoList(@RequestParam OffsetDateTime createdAt) {
-        try {
-           List<TodoList> todolist = todoSer.getToDos();
-           return ResponseEntity.status(HttpStatus.CREATED).body(todolist);
-        } catch(Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+        List<TodoList> todolist = todoSer.getToDos();
+        return ResponseEntity.status(HttpStatus.CREATED).body(todolist);
     }
 
     @GetMapping("/todos")
     public ResponseEntity<Page<TodoList>> sorttodoList(@Valid @RequestParam int pageNumber,@RequestParam int pageSize) {
-        try {
-           Page<TodoList> todolist = todoSer.pagination(pageNumber,pageSize);
-           return ResponseEntity.ok(todolist);
-        } catch(Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+        Page<TodoList> todolist = todoSer.pagination(pageNumber,pageSize);
+        return ResponseEntity.ok(todolist);
     }
 
 
