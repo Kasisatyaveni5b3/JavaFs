@@ -37,13 +37,14 @@ public class TodoListController {
     @GetMapping("/")
     public ResponseEntity<List<TodoList>> createtodoList() {
         List<TodoList> todolist = todoSer.getToDos();
+        logger.debug("todolist fetched", todolist);
            return ResponseEntity.ok(todolist);
     }
     
     @GetMapping("/todos/{id}")
     public ResponseEntity<TodoList> getTodosList(@PathVariable int id) {
         TodoList todo=todoSer.getTodosById(id);
-        logger.(todo);
+        logger.info("string");
         return ResponseEntity.ok(todo);
     }
     
