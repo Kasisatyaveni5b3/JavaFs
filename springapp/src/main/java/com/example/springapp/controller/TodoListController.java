@@ -44,7 +44,9 @@ public class TodoListController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-
+    
+    @GetMapping("/todos/{id}")
+    
     
     @PutMapping("/update/{id}")
     public ResponseEntity<TodoList> updatetodoList(@PathVariable int id, @RequestBody TodoList todos) {
@@ -58,7 +60,6 @@ public class TodoListController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteTodoList(@PathVariable int id) {
-    
         todoSer.deleteTodo(id);
         return ResponseEntity.ok("Todo deleted successfully");
     }

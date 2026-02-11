@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.example.springapp.TodoNotFoundException;
 import com.example.springapp.model.TodoList;
 import com.example.springapp.repository.TodoListRepo;
 
@@ -23,6 +24,10 @@ public class TodoListService {
 
     public List<TodoList> getToDos() {
         return todolistRepo.findAll();
+    }
+
+    public TodoList getTodosById(int id) {
+        return todolistRepo.findById(id).orElseThrow(() -> new TodoNotFoundException("todo not found with the id" +id));
     }
 
     public TodoList updateTodos(int id, TodoList todos) {
