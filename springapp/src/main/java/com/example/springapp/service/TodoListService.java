@@ -27,7 +27,7 @@ public class TodoListService {
     }
 
     public TodoList getTodosById(int id) {
-        return todolistRepo.findById(id).orElseThrow(() -> new TodoNotFoundException("todo not found with the id" +id));
+        return todolistRepo.findById(id).orElseThrow(() -> new TodoNotFoundException("todo not found with the id"));
     }
 
     public TodoList updateTodos(int id, TodoList todos) {

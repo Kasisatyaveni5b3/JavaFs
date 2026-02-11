@@ -46,7 +46,10 @@ public class TodoListController {
     }
     
     @GetMapping("/todos/{id}")
-    
+    public ResponseEntity<TodoList> getTodosList(@PathVariable int id) {
+        TodoList todo=todoSer.getTodosById(id);
+        return ResponseEntity.ok(todo);
+    }
     
     @PutMapping("/update/{id}")
     public ResponseEntity<TodoList> updatetodoList(@PathVariable int id, @RequestBody TodoList todos) {
