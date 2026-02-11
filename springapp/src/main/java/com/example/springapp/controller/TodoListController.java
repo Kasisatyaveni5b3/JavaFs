@@ -44,7 +44,7 @@ public class TodoListController {
     @GetMapping("/todos/{id}")
     public ResponseEntity<TodoList> getTodosList(@PathVariable int id) {
         TodoList todo=todoSer.getTodosById(id);
-        logger.info("string");
+        logger.info("string",todo);
         return ResponseEntity.ok(todo);
     }
     
