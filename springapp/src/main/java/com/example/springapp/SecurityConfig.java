@@ -1,4 +1,5 @@
 package com.example.springapp;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,8 +16,8 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http.csrf().disable()
-    .authorizeHttpRequests().antMatchers("/api/public").permitAll()
-    .anyRequest().authenticated().and().httpBasic();
+        .authorizeHttpRequests().antMatchers("/api/public").permitAll()
+        .anyRequest().authenticated().and().httpBasic();
     return http.build();
   }
 
@@ -26,15 +27,15 @@ public class SecurityConfig {
   }
 
   @Bean
-  public UserDetailsService userDetailService() {
-  
-      UserDetails user = User.builder()
-              .username("test")
-              .password("{noop}realpassword")
-              .roles("USER")
-              .build();
-  
-      return new InMemoryUserDetailsManager(user);
+  public UserDetailsService userDetailService(PasswordEncoder encoder) {
+    String encodedPassword = encoder.encode("realpassword");
+    UserDetails user = User.builder()
+        .username("test")
+        .password(encodedPassword)
+        .roles("USER")
+        .build();
+
+    return new InMemoryUserDetailsManager(user);
   }
-  
+
 }
