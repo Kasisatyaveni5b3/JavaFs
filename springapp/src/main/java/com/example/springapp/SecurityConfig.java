@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -29,7 +30,11 @@ public class SecurityConfig {
 
   @Bean
   public UserDetailsService userDetailService() {
-    UserDetails user = User.builder();
+    UserDetails user = User.builder()
+    .username("test")
+    .password("Test@123").build();
+    return new InMemoryUserDetailsManager(user);
+
     
   }
 }
