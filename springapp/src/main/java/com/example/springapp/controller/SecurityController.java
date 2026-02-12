@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api")
 public class SecurityController {
     
-    @PostMapping("/public")
+    @GetMapping("/public")
     public String publicMethod() {
         return "this is public method";
     }
