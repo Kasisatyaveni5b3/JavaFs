@@ -45,7 +45,6 @@ public class TodoListService {
 
     public List<TodoList> sorting(String sortBy) {
         return todolistRepo.findAll(Sort.by(sortBy));
-
     }
 
     public Page<TodoList> pagination(int pageNumber, int pageSize) {
