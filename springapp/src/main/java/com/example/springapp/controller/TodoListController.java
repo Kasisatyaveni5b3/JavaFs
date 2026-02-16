@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,6 +34,16 @@ public class TodoListController {
         TodoList todolist = todoSer.createTodoList(todo);
         return ResponseEntity.status(HttpStatus.CREATED).body(todolist);
     }
+
+    @GetMapping("/greet")
+public ResponseEntity<String> greetUser() {
+    HttpHeaders headers = new HttpHeaders();
+    headers.add("Custom-Header", "HelloWorld");
+    headers.add("Author", "Satyaveni");
+
+    return new ResponseEntity<>("Hello from Spring Boot!", headers, HttpStatus.OK);
+}
+
 
     @GetMapping("/")
     public ResponseEntity<List<TodoList>> createtodoList() {
