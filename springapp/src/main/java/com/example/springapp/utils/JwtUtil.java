@@ -1,12 +1,14 @@
 package com.example.springapp.utils;
 
 import java.security.Key;
+import java.util.Date;
 
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.security.SignatureAlgorithm;
 
 @Component
 public class JwtUtil {
@@ -18,6 +20,11 @@ public class JwtUtil {
     }
     
     public String generateToken(String email) {
-       return Jwts.builder().setSubject(email).
+       return Jwts.builder()
+       .subject(email)
+       .issuedAt(new Date())
+       .expiration(new Date(System.currentTimeMillis()+expirationDate))
+       .signWith(getSigningKey(),SignatureAlgorithm.HS256).compact();
+
     }
 }
