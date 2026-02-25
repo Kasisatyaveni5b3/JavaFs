@@ -9,5 +9,5 @@ import com.example.springapp.model.User;
 
 @Repository
 public interface UserRepo extends JpaRepository<User,Integer>{
-    Optional<User> findByUserName(String name);
+    Optional<User> findByEmail(String email);
 }
