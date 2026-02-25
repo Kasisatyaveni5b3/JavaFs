@@ -5,7 +5,6 @@ import java.util.Date;
 
 import org.springframework.stereotype.Component;
 
-import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureAlgorithm;
@@ -25,6 +24,5 @@ public class JwtUtil {
        .issuedAt(new Date())
        .expiration(new Date(System.currentTimeMillis()+expirationDate))
        .signWith(getSigningKey(),SignatureAlgorithm.HS256).compact();
-
     }
 }
