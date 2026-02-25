@@ -24,4 +24,15 @@ public class JwtUtil {
        .expiration(new Date(System.currentTimeMillis()+expirationDate))
        .signWith(getSigningKey()).compact();
     }
+
+    public boolean validToken(String token) {
+        try {
+          Jwts.builder().
+          signWith(getSigningKey())
+          .parseClaimerjws(token);
+          return true;
+        } catch(Exception e) {
+           return false;
+        }
+    }
 }
