@@ -23,6 +23,6 @@ public class JwtUtil {
        .subject(email)
        .issuedAt(new Date())
        .expiration(new Date(System.currentTimeMillis()+expirationDate))
-       .signWith(getSigningKey(),SignatureAlgorithm.HS256).compact();
+       .signWith(getSigningKey()).compact();
     }
 }

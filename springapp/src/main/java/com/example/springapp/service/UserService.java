@@ -34,11 +34,16 @@ public class UserService {
 
     public String LoginUser(String email, String password) {
         Optional<User> optionalUser = userRepo.findByEmail(email);
+        if(optionalUser.isEmpty()) {
+            return "user not found";
+        }
         User user = optionalUser.get();
         if(!passwordencoder.matches(password, user.getPassword())) {
             return "invalid email or password";
         }
-        return jwtUtil.generateToken(user.getEmail());
+        String token = jwtUtil.generateToken(user.getEmail());
+        System.out.println("jwt" + token);
+        return token;
 
     }
 }
