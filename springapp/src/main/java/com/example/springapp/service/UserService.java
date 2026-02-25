@@ -24,7 +24,7 @@ public class UserService {
 
     public String registerUser(User user) {
         Optional<User> existingUser = userRepo.findByEmail(user.getEmail());
-        if(existingUser.isPresent()) {
+        if (existingUser.isPresent()) {
             return "user already registered";
         }
         user.setPassword(passwordencoder.encode(user.getPassword()));
@@ -32,7 +32,15 @@ public class UserService {
         return "user registered successfully";
     }
 
-    public String LoginUser(User user) {
-        Optional<User> user = userRepo.findByEmail(user.)
+    public String LoginUser(String email, String password) {
+        Optional<User> optionalUser = userRepo.findByEmail(user.getEmail());
+        
+        User user = optionalUser.get();
+        if(!passwordencoder.matches(password, user.getPassword())) {
+            return "invalid email or password"
+        }
+
+        return
+
     }
 }
