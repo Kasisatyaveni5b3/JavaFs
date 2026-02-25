@@ -27,12 +27,21 @@ public class JwtUtil {
 
     public boolean validToken(String token) {
         try {
-          Jwts.builder().
-          signWith(getSigningKey())
-          .parseClaimerjws(token);
-          return true;
+            Jwts.parser()
+                .sig(getSigningKey())
+                .build()
+                .parseClaimsJws(token);
+            return true;
         } catch(Exception e) {
-           return false;
+            return false;
         }
+    }
+
+    public String extractEmail(String token) {
+        return Jwts.parser()
+                .setSigningKey(getSigningKey())
+                .parseClaimsJws(token)
+                .getBody()
+                .getSubject();
     }
 }
