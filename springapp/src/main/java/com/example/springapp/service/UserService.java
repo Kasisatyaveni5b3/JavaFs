@@ -16,12 +16,13 @@ public class UserService {
 
     @Autowired
     PasswordEncoder passwordencoder;
-    public User registerUser(User user) {
-        Optional<User> existingUser = userRepo.findByEmail(user.getEmail())
+    public String registerUser(User user) {
+        Optional<User> existingUser = userRepo.findByEmail(user.getEmail());
         if(existingUser.isPresent()) {
             return "user already registered";
         }
         user.setPassword(passwordencoder.encode(user.getPassword()));
-        return userRepo.save(user);
+        userRepo.save(user);
+        return "user registered successfully";
     }
 }
