@@ -33,14 +33,12 @@ public class UserService {
     }
 
     public String LoginUser(String email, String password) {
-        Optional<User> optionalUser = userRepo.findByEmail(user.getEmail());
-        
+        Optional<User> optionalUser = userRepo.findByEmail(email);
         User user = optionalUser.get();
         if(!passwordencoder.matches(password, user.getPassword())) {
-            return "invalid email or password"
+            return "invalid email or password";
         }
-
-        return
+        return jwtUtil.generateToken(user.getEmail());
 
     }
 }
