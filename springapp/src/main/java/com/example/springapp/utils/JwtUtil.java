@@ -7,12 +7,11 @@ import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
-import io.jsonwebtoken.security.SignatureAlgorithm;
 
 @Component
 public class JwtUtil {
     private String mySecret="mySuperSecretKey12345678901234567890";
-    private String expirationDate="3600000";
+    private long expirationDate=360000;
     
     private Key getSigningKey() {
         return Keys.hmacShaKeyFor(mySecret.getBytes());

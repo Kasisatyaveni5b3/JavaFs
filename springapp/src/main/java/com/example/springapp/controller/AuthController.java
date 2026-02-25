@@ -23,8 +23,8 @@ public class AuthController {
     }
 
     @PostMapping("/auth/login")
-    public ResponseEntity<?> loginUser(@RequestBody String email,String password) {
-        String token = userService.LoginUser(email, password);
-        return ResponseEntity.status(HttpStatus.OK).body(token);
+    public ResponseEntity<?> loginUser(@RequestBody User user) {
+        String token = userService.LoginUser(user.getEmail(),user.getPassword());
+        return ResponseEntity.ok(token);
     }
 }
