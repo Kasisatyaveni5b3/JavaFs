@@ -18,6 +18,6 @@ public class JwtUtil {
     }
     
     public String generateToken(String email) {
-       return Jwts.builder().setSubject
+       return Jwts.builder().setSubject(email).
     }
 }
