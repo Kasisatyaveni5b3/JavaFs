@@ -1,5 +1,7 @@
 package com.example.springapp.utils;
 
+import java.security.Key;
+
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Jwt;
@@ -10,11 +12,5 @@ public class JwtUtil {
     private String mySecret="mySuperSecretKey12345678901234567890";
     private String expirationDate="3600000";
 
-    public String signInKey() {
-        return 
-    }
-
-    public String generateToken(String email) {
-        return Jwts.builder().setSubject(email).
-    }
+    
 }
