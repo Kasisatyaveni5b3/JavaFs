@@ -1,6 +1,7 @@
 package com.example.springapp;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -28,7 +29,7 @@ public class JwtFilter extends OncePerRequestFilter {
 protected void doFilterInternal(HttpServletRequest request,
                                 HttpServletResponse response,
                                 FilterChain filterChain)
-        throws ServletException, IOException {
+        throws ServletException, IOException, java.io.IOException{
 
     String authHeader = request.getHeader("Authorization");
     System.out.println("Header: " + authHeader);
@@ -40,19 +41,15 @@ protected void doFilterInternal(HttpServletRequest request,
         System.out.println("Is Valid: " + jwtUtil.validToken(token));
 
         if (jwtUtil.validToken(token)) {
-
-            // Extract email and role from JWT
             String email = jwtUtil.extractEmail(token);
             String role = jwtUtil.extractRole(token);
 
             System.out.println("Email: " + email);
             System.out.println("Role: " + role);
 
-            // Convert role to Spring authority
             List<SimpleGrantedAuthority> authorities = 
                 List.of(new SimpleGrantedAuthority("ROLE_" + role));
 
-            // Set authentication with authorities
             UsernamePasswordAuthenticationToken authentication =
                     new UsernamePasswordAuthenticationToken(
                             email,
@@ -63,7 +60,6 @@ protected void doFilterInternal(HttpServletRequest request,
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
     }
-
     System.out.println("JWT Filter executed");
     filterChain.doFilter(request, response);
 }

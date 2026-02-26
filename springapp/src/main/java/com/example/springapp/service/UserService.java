@@ -28,6 +28,7 @@ public class UserService {
             return "user already registered";
         }
         user.setPassword(passwordencoder.encode(user.getPassword()));
+        if (user.getRole() == null) user.setRole("USER");
         userRepo.save(user);
         return "user registered successfully";
     }
@@ -41,7 +42,7 @@ public class UserService {
         if(!passwordencoder.matches(password, user.getPassword())) {
             return "invalid email or password";
         }
-        String token = jwtUtil.generateToken(user.getEmail());
+        String token = jwtUtil.generateToken(user);
         return token;
     }
 }
