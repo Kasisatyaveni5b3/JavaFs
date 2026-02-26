@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -27,4 +28,9 @@ public class AuthController {
         String token = userService.LoginUser(user.getEmail(),user.getPassword());
         return ResponseEntity.ok(token);
     }
+
+    @GetMapping("/api/test")
+public String test(Authentication authentication) {
+    return "Logged in user: " + authentication.getName();
+}
 }

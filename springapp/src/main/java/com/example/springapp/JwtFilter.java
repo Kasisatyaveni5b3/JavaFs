@@ -3,6 +3,7 @@ package com.example.springapp;
 import java.util.ArrayList;
 
 import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,27 +13,44 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.example.springapp.service.UserService;
 import com.example.springapp.utils.JwtUtil;
+
+import io.jsonwebtoken.io.IOException;
 
 @Component
 public class JwtFilter extends OncePerRequestFilter {
-    @Autowired
-    JwtUtil jwtUtil;
 
     @Autowired
-    UserService userService;
+    private JwtUtil jwtUtil;
 
-    public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filter) {
-        String authenticationHeader = request.getHeader("AUTHORIZATION");
-        if (authenticationHeader != null && authenticationHeader.startsWith("Bearer")) {
-            String token = authenticationHeader.substring(7);
+    @Override
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain)
+            throws ServletException, IOException, java.io.IOException {
+
+        String authHeader = request.getHeader("Authorization");
+
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+
+            String token = authHeader.substring(7);
+
             if (jwtUtil.validToken(token)) {
+
                 String email = jwtUtil.extractEmail(token);
-                UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(email, null,
-                        new ArrayList<>());
-                SecurityContextHolder.getContext().setAuthentication(auth);
+
+                UsernamePasswordAuthenticationToken authentication =
+                        new UsernamePasswordAuthenticationToken(
+                                email,
+                                null,
+                                new ArrayList<>()
+                        );
+
+                SecurityContextHolder.getContext()
+                        .setAuthentication(authentication);
             }
         }
+
+        filterChain.doFilter(request, response);
     }
 }

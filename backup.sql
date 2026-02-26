@@ -137,7 +137,7 @@ CREATE TABLE `user` (
   `name` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146,7 +146,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'test@gmail.com','test','$2a$10$wTiXDqJJDUZbElnj3gvF5.estSpfSTsq/jNTzLHUF.qgI5B1nNrhW');
+INSERT INTO `user` VALUES (1,'test@gmail.com','test','$2a$10$wTiXDqJJDUZbElnj3gvF5.estSpfSTsq/jNTzLHUF.qgI5B1nNrhW'),(2,NULL,NULL,'$2a$10$mwpVCjXTtTDANIrqKerd/.UZY5gIGGF3y6M5XBds7L8IwFgZDhj0i'),(3,'test123@gmail.com',NULL,'$2a$10$rSKOdGjKrnYItBI7c9lxTO5Y3d.71SfrkPwJ.M96xyzl2G6eClBdK');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -159,4 +159,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-02-26  6:21:48
+-- Dump completed on 2026-02-26  6:36:47
