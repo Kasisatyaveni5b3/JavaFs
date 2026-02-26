@@ -30,11 +30,13 @@ public class JwtFilter extends OncePerRequestFilter {
             throws ServletException, IOException, java.io.IOException {
 
         String authHeader = request.getHeader("Authorization");
+        System.out.println("Header: " + request.getHeader("Authorization"));
 
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
 
             String token = authHeader.substring(7);
-
+            System.out.println("Token: " + token);
+System.out.println("Is Valid: " + jwtUtil.validToken(token));
             if (jwtUtil.validToken(token)) {
 
                 String email = jwtUtil.extractEmail(token);
@@ -50,6 +52,7 @@ public class JwtFilter extends OncePerRequestFilter {
                         .setAuthentication(authentication);
             }
         }
+        System.out.println("JWT Filter executed");
 
         filterChain.doFilter(request, response);
     }

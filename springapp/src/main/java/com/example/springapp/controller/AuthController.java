@@ -3,6 +3,7 @@ package com.example.springapp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,18 +20,18 @@ public class AuthController {
 
     @PostMapping("/auth/register")
     public ResponseEntity<User> registerUser(@RequestBody User user) {
-       userService.registerUser(user);
-       return ResponseEntity.status(HttpStatus.CREATED).body(user);
+        userService.registerUser(user);
+        return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
 
     @PostMapping("/auth/login")
     public ResponseEntity<?> loginUser(@RequestBody User user) {
-        String token = userService.LoginUser(user.getEmail(),user.getPassword());
+        String token = userService.LoginUser(user.getEmail(), user.getPassword());
         return ResponseEntity.ok(token);
     }
 
     @GetMapping("/api/test")
-public String test(Authentication authentication) {
-    return "Logged in user: " + authentication.getName();
-}
+    public String test(Authentication authentication) {
+        return "Logged in user: " + authentication.getName();
+    }
 }
