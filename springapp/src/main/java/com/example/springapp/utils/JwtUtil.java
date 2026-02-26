@@ -3,6 +3,8 @@ package com.example.springapp.utils;
 import java.security.Key;
 import java.util.Date;
 
+import javax.crypto.SecretKey;
+
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Jwts;
@@ -13,7 +15,7 @@ public class JwtUtil {
     private String mySecret = "mySuperSecretKey12345678901234567890";
     private long expirationDate = 360000;
 
-    private Key getSigningKey() {
+    private SecretKey getSigningKey() {
         return Keys.hmacShaKeyFor(mySecret.getBytes());
     }
 
@@ -27,23 +29,15 @@ public class JwtUtil {
 
     public boolean validToken(String token) {
         try {
-            Jwts.parser()
-                    .setSigningKey(getSigningKey())
-                    .parseClaimsJws(token);
+            Jwts.parser().verifyWith(getSigningKey()).build().parseSignedClaims(token);
             return true;
         } catch (Exception e) {
             return false;
         }
     }
 
-    public boolean extractEmail(String token) {
-        try {
-            Jwts.parser()
-                    .setSigningKey(getSigningKey())
-                    .parseClaimsJws(token).getSubject();
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+    public String extractEmail(String token) {
+        Jwts.parser().verifyWith(getSigningKey()).build().parseSignedClaims(token).
     }
+
 }
