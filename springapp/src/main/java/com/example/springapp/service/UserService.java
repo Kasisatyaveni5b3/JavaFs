@@ -42,8 +42,6 @@ public class UserService {
             return "invalid email or password";
         }
         String token = jwtUtil.generateToken(user.getEmail());
-        System.out.println("jwt" + token);
         return token;
-
     }
 }
