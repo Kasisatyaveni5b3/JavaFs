@@ -32,11 +32,11 @@ public class JwtUtil {
 
     public boolean validToken(String token) {
         try {
-            System.out.println(""+getSigningKey());
+            System.out.println("" + getSigningKey());
             Jwts.parser()
-                .verifyWith(getSigningKey())
-                .build()
-                .parseSignedClaims(token);
+                    .verifyWith(getSigningKey())
+                    .build()
+                    .parseSignedClaims(token);
             return true;
         } catch (Exception e) {
             System.out.println("error" + e.getMessage());
@@ -46,6 +46,15 @@ public class JwtUtil {
 
     public String extractEmail(String token) {
         return Jwts.parser().verifyWith(getSigningKey()).build().parseSignedClaims(token).getPayload().getSubject();
+    }
+
+    public String extractRole(String token) {
+        return (String) Jwts.parser()
+                .verifyWith(getSigningKey())
+                .build()
+                .parseSignedClaims(token)
+                .getPayload()
+                .get("role");
     }
 
 }
